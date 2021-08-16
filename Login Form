@@ -1,0 +1,56 @@
+package wisg;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+public class Login extends JFrame implements ActionListener {
+JPanel Panel;
+JLabel UserLabel, PasswordLabel, Message;
+JTextField UserNameText;
+JPasswordField PasswordText;
+JButton Submit, Cancel;
+Login() {
+UserLabel = new JLabel();
+UserLabel.setText("Username :");
+UserNameText = new JTextField();
+PasswordLabel = new JLabel();
+PasswordLabel.setText("Password :");
+PasswordText = new JPasswordField();
+Submit = new JButton("SUBMIT");
+Panel = new JPanel(new GridLayout(3, 1));
+Panel.add(UserLabel);
+Panel.add(UserNameText);
+Panel.add(PasswordLabel);
+Panel.add(PasswordText);
+Message = new JLabel();
+Panel.add(Message);
+Panel.add(Submit);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+Submit.addActionListener(this);
+add(Panel, BorderLayout.CENTER);
+setTitle("Please Login Here");
+setSize(300, 100);
+setVisible(true);
+}
+public static void main(String[] args) {
+new Login();
+}
+@Override
+public void actionPerformed(ActionEvent ae) {
+String userName = UserNameText.getText();
+String password = PasswordText.getText();
+if (userName.trim().equals("Admin") && password.trim().equals("Admin")) {
+Message.setText(" Hello " + userName + "");
+} else {
+Message.setText(" Invalid User ");
+}
+}
+}
